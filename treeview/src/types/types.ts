@@ -34,10 +34,8 @@ export interface TreeState {
 }
 
 export interface TreeContextType {
-  savedState: TreeNode[];
   workingState: TreeNode[];
   isLoading: boolean;
-  setSavedState: (state: TreeNode[]) => void;
   setWorkingState: (state: TreeNode[]) => void;
   setIsLoading: (loading: boolean) => void;
   handlePass: (id: number) => void;

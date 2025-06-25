@@ -1,5 +1,6 @@
 import React from 'react'
 import {TreeView as RSTreeView, View} from '@adobe/react-spectrum'
+import useTreeProvider from '../../hooks/useTreeProvider/useTreeProvider'
 
 import TreeViewItem from '../TreeViewItem/TreeViewItem'
 
@@ -12,9 +13,18 @@ type MyItem = {
 
 const TreeView = props => {
 
-    if (!props.items) {
+  const {
+    workingState,
+    isLoading
+  } = useTreeProvider()
+
+    if (!props.items || !workingState) {
       return <p>'loading'</p>
     }
+
+    console.log(props.items)
+    console.log(workingState)
+
     
     return (
       <View padding="size-100" width="100%">

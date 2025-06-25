@@ -3,25 +3,27 @@ import { TreeContext } from "../../state/TreeContext";
 
 const useTreeProvider = () => {
     const {
-        savedState,
         workingState,
         setWorkingState,
-        setSavedState,
         isLoading,
         setIsLoading,
         handleFail,
-        handlePass
+        handlePass,
+        data,
+        save,
+        revert,
     } = useContext(TreeContext)
 
     return {
-        savedState,
         workingState,
         setWorkingState,
-        setSavedState,
         isLoading,
         setIsLoading,
         handleFail,
-        handlePass
+        handlePass,
+        data,
+        save,
+        revert,
     }
 }
 
