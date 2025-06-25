@@ -12,6 +12,7 @@ const useTreeProvider = () => {
         data,
         save,
         revert,
+        error,
     } = useContext(TreeContext)
 
     return {
@@ -24,6 +25,7 @@ const useTreeProvider = () => {
         data,
         save,
         revert,
+        error,
     }
 }
 

@@ -15,9 +15,14 @@ const TreeView = props => {
 
   const {
     workingState,
-    isLoading
+    isLoading,
+    error
   } = useTreeProvider()
 
+    console.log(error)
+    if (error) {
+      return <p>{error}</p>
+    }
     if (!props.items || !workingState) {
       return <p>'loading'</p>
     }

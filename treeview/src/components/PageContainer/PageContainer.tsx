@@ -20,7 +20,7 @@ const PageContainer = () => {
     }, [data])
 
     if (isLoading) {
-        return <p>loading downnnnnnnn</p>
+        return <p>loading</p>
     }
 
     return (

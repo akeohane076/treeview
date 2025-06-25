@@ -14,10 +14,10 @@ import type { TreeProviderProps, FlatMap, TreeNode } from '../types/types'
 
 const TreeProvider = (props: TreeProviderProps) => {
     const { children } = props
-
     const {
         workingState: defaultWorkingState,
     } = defaultState
+
     const [data, setData] = useState<TreeNode | null>(null);
     const [error, setError] = useState<Error | null>(null);
     const [workingState, setWorkingState] = useState(defaultWorkingState)
@@ -65,7 +65,8 @@ const TreeProvider = (props: TreeProviderProps) => {
           console.log(result)
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (err: any) {
-          setError(err);
+            console.log('lll')
+          setError("There was an error with the request");
         } finally {
           setIsLoading(false);
         }
@@ -85,6 +86,7 @@ const TreeProvider = (props: TreeProviderProps) => {
         data,
         save,
         revert,
+        error,
     }), [
         workingState,
         data,
@@ -95,6 +97,7 @@ const TreeProvider = (props: TreeProviderProps) => {
         handleFail,
         save,
         revert,
+        error,
     ])
 
     return (
