@@ -1,0 +1,50 @@
+{
+    "id": 615,
+    "type": "ROOT",
+    "name": "Root Node",
+    "status": null,
+    "reason": null,
+    "children": [
+    {
+    "id": 616,
+    "type": "CHECK",
+    "name": "Check 1",
+    "status": "PASS",
+    "reason": "Content is compliant",
+    "children": []
+    },
+    {
+    "id": 617,
+    "type": "CHECK",
+    "name": "Check 2",
+    "status": "FAIL",
+    "reason": "Content is not compliant",
+    "children": [
+    {
+    "id": 618,
+    "type": "SUB_CHECK",
+    "name": "Sub-check A of Check 2",
+    "status": "FAIL",
+    "reason": "Content is not compliant",
+    "children": []
+    },
+    {
+    "id": 619,
+    "type": "SUB_CHECK",
+    "name": "Sub-check B of Check 2",
+    "status": "FAIL",
+    "reason": "Content is not compliant",
+    "children": []
+    },
+    {
+    "id": 620,
+    "type": "SUB_CHECK",
+    "name": "Sub-check C of Check 2",
+    "status": "PASS",
+    "reason": "Content is compliant",
+    "children": []
+    }
+    ]
+    }
+    ]
+    }
