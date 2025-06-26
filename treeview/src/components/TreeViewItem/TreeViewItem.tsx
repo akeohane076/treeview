@@ -18,8 +18,12 @@ import useTreeProvider from '../../hooks/useTreeProvider/useTreeProvider';
 import type { TreeNode, TreeViewItemProps } from '../../types/types';
 
 const TreeViewItem = (props: TreeViewItemProps) => {
-
+  
   const { handleFail, workingState, handlePass } = useTreeProvider()
+  if (!workingState || !workingState[props.id]) {
+    return null; // or a fallback UI
+  }
+
   const onAction = (k: Key) => {
     if (k === "cancel") {
       handleFail(props.id)
@@ -31,7 +35,7 @@ const TreeViewItem = (props: TreeViewItemProps) => {
   const isPassing = workingState[props.id].status === "PASS"
   const isRoot = props.name === "Root Node"
   const disabledKeys = isPassing ? 'approve' : 'cancel'
-  const hasChildren = props.childItems?.length > 0
+  const hasChildren = props.childItems?.length && props.childItems?.length > 0
     return (
         <>
         <RSTreeViewItem id={props.name} textValue={props.name} key={props.name}>

@@ -33,10 +33,18 @@ export interface TreeState {
   workingState: TreeNode[];
 }
 
+export interface TreeViewProps {
+  items: TreeNode
+}
+
 export interface TreeContextType {
-  workingState: TreeNode[];
+  workingState: FlatMap | null;
   isLoading: boolean;
-  setWorkingState: (state: TreeNode[]) => void;
+  data: TreeNode | null;
+  save: () => void;
+  revert: () => void;
+  error: string | null;
+  setWorkingState: (state: FlatMap) => void;
   setIsLoading: (loading: boolean) => void;
   handlePass: (id: number) => void;
   handleFail: (id: number) => void;

@@ -1,51 +1,45 @@
-import React from 'react'
-import {TreeView as RSTreeView, View} from '@adobe/react-spectrum'
-import useTreeProvider from '../../hooks/useTreeProvider/useTreeProvider'
+import React from 'react';
+import { TreeView as RSTreeView, View } from '@adobe/react-spectrum';
+import useTreeProvider from '../../hooks/useTreeProvider/useTreeProvider';
+import type { TreeViewProps, TreeNode } from '../../types/types';
 
-import TreeViewItem from '../TreeViewItem/TreeViewItem'
+import TreeViewItem from '../TreeViewItem/TreeViewItem';
 
-type MyItem = {
-    id: string;
-    name: string;
-    icon: any;
-    childItems?: MyItem[];
-  };
-
-const TreeView = props => {
+const TreeView = (props: TreeViewProps) => {
+  const { items } = props;
 
   const {
     workingState,
     isLoading,
-    error
-  } = useTreeProvider()
+    error,
+  } = useTreeProvider();
 
-    console.log(error)
-    if (error) {
-      return <p>{error}</p>
-    }
-    if (!props.items || !workingState) {
-      return <p>'loading'</p>
-    }
+  if (error) {
+    return <p>{error}</p>;
+  }
 
-    console.log(props.items)
-    console.log(workingState)
+  if (!items || !workingState || isLoading) {
+    return <p>loading</p>;
+  }
 
-    
-    return (
-      <View padding="size-100" width="100%">
-        <RSTreeView items={[props.items]} defaultExpandedKeys={['Root Node']} >
-          {(item: MyItem) => (
-              <TreeViewItem
-                id={item.id}
-                icon={item.icon}
-                childItems={item.children}
-                textValue={item.name}
-                name={item.name}
-              />
-          )}
-        </RSTreeView>
-      </View>
-    )
-}
+  return (
+    <View padding="size-100" width="100%">
+      <RSTreeView<TreeNode>
+        items={[items]}
+        defaultExpandedKeys={['Root Node']}
+      >
+        {(item: TreeNode) => (
+          <TreeViewItem
+            key={item.id}
+            id={item.id}
+            childItems={item.children}
+            textValue={item.name}
+            name={item.name}
+          />
+        )}
+      </RSTreeView>
+    </View>
+  );
+};
 
-export default TreeView
+export default TreeView;

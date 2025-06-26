@@ -19,7 +19,7 @@ const TreeProvider = (props: TreeProviderProps) => {
     } = defaultState
 
     const [data, setData] = useState<TreeNode | null>(null);
-    const [error, setError] = useState<Error | null>(null);
+    const [error, setError] = useState<string | null>(null);
     const [workingState, setWorkingState] = useState(defaultWorkingState)
     const [savedState, setSavedState] = useState(defaultWorkingState)
     const [isLoading, setIsLoading] = useState(true)
@@ -34,16 +34,16 @@ const TreeProvider = (props: TreeProviderProps) => {
     }, [])
 
     const handlePass = (id: number) => {
-        setWorkingState(prev => markPass(id, prev));
+        setWorkingState(prev => markPass(id, prev as FlatMap));
     };
     
     const handleFail = (id: number) => {
-        setWorkingState(prev => markFail(id, prev));
+        setWorkingState(prev => markFail(id, prev as FlatMap));
     };
 
     const save = useCallback(() => {
     // You could send flattenToTree(workingState) to the backend here if needed
-        const flat = makeTree(workingState)
+        const flat = makeTree(workingState as FlatMap)
         setSavedState(workingState);
         setData(flat)
     }, [workingState]);
@@ -63,10 +63,10 @@ const TreeProvider = (props: TreeProviderProps) => {
           setSavedState(flat);
           setData(result);
           console.log(result)
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        } catch (err: any) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        } catch (err) {
             console.log('lll')
-          setError("There was an error with the request");
+            setError("There was an error with the request");
         } finally {
           setIsLoading(false);
         }
